@@ -1,3 +1,4 @@
 # exclude Proj1
 /Prog1/*
 *.swp
+/cs704/*
