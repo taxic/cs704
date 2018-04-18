@@ -254,7 +254,7 @@ printLeastK(pre, post, b, encP, "Example 3")
 # Example 4
 # t-required-k-induction Hoare triple
 # Here, x, t and y are Int, t > 0
-t = 17
+t = 14
 """
 {x = 0, y = t - 1}
 while(x < t)
@@ -268,3 +268,10 @@ b = x[0] < t
 encP = And(x[1] == x[0] + 1, y[1] == (y[0] + 1) % t)
 
 printLeastK(pre, post, b, encP, "Example 4")
+"""
+print kInduction(15, pre, post, b, encP)
+print kInduction(16, pre, post, b, encP)
+print kInduction(17, pre, post, b, encP)
+print kInduction(18, pre, post, b, encP)
+print kInduction(19, pre, post, b, encP)
+"""
