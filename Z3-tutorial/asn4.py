@@ -129,6 +129,8 @@ def kInduction(k, pre, post, b, encP):
         itper = substitute(itper, *varMap[i])
         it = And(it, itper)
 
+    if debug: print it
+
     if isValid(Implies(And(it, stop), postper)) == False:
         if debug: print "in induction step"
         return "failure"
@@ -248,3 +250,21 @@ inv = And(x[0] == (n[0] + q[0] + 1) * (n[0] - q[0]) / 2, n[0] >= 0)
 
 tripleValid(pre, b, encP, post, inv, "Example 3")
 printLeastK(pre, post, b, encP, "Example 3")
+
+# Example 4
+# t-required-k-induction Hoare triple
+# Here, x, t and y are Int, t > 0
+t = 17
+"""
+{x = 0, y = t - 1}
+while(x < t)
+    y = (y + 1) mod t
+    x = x + 1
+{y = t - 1 or 1 < x < t}
+"""
+pre = And(x[0] == 0, y[0] == t - 1)
+post = Or(y[0] == t - 1, And(x[0] < t, x[0] > 1))
+b = x[0] < t 
+encP = And(x[1] == x[0] + 1, y[1] == (y[0] + 1) % t)
+
+printLeastK(pre, post, b, encP, "Example 4")
